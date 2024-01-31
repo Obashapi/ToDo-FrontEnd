@@ -1,0 +1,77 @@
+<h3 mat-dialog-title>Create Task</h3>
+
+<mat-dialog-content>
+
+<section id="forms-section">
+
+    <!-- <div class="form-block"> -->
+
+    <div class="form-group" [formGroup]="createTaskform">
+
+     <div>
+        <mat-form-field appearance="outline">
+            <mat-label>title</mat-label>
+            <input matInput placeholder="title" formControlName="title">    
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>status</mat-label>
+            <select  formControlName="status" matNativeControl required>
+                <option value="COMPLETED">COMPLETED</option>
+                <option value="PENDING">PENDING</option>
+                <option value="INPROGRESS">INPROGRESS</option>
+              </select>
+        </mat-form-field>
+
+    </div>
+    <div>
+   
+        <mat-form-field appearance="outline">
+            <mat-label>priority</mat-label>
+            <select formControlName="priority" matNativeControl required>
+                <option value="HIGH">HIGH</option>
+                <option value="LOW">LOW</option>
+                <option value="MEDIUM">MEDIUM</option>
+              </select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>creationDate</mat-label>
+            <input matInput placeholder="creation date">
+        </mat-form-field>
+    
+    </div>
+
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>dueDate</mat-label>
+            <input matInput placeholder="due date" formControlName="dueDate">
+        </mat-form-field>
+    </div>
+
+    
+        <mat-form-field appearance="outline">
+            <mat-label>description</mat-label>
+            <textarea matInput placeholder="description" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="description">
+        </mat-form-field> -->
+
+   
+    </div>
+<!-- </div> -->
+
+<!-- <a href="#" class="btn-add">
+    <span class="text">Add Task</span>
+</a> -->
+</section>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" >Add</button>
+</mat-dialog-actions>

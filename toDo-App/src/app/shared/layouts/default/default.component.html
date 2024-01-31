@@ -1,3 +1,269 @@
-<h1>router</h1>
+<section id="content">
+  <div class="head-title">
+    <div class="left">
+      <h1>Dashboard</h1>
+    </div>
 
-<router-outlet></router-outlet>
+    <!-- <a href="#"  class="btn-add"> -->
+    <button class="btn-add" (click)="createTasks()">Add Task</button>
+    <!-- <span class="text"></span> -->
+    <!-- </a> -->
+  </div>
+
+  <div class="dashboard-cards">
+    <div class="tile-card">
+      <div class="deco-card one">
+        <i class="bx bx-detail bx-sm"></i>
+      </div>
+      <span class="text">
+        <h3>{{ pendingCount }}</h3>
+        <p>Pending Tasks</p>
+      </span>
+    </div>
+    <div class="tile-card">
+      <div class="deco-card two">
+        <i class="bx bxs-check-circle bx-sm"></i>
+      </div>
+      <span class="text">
+        <h3>{{ completedCount }}</h3>
+        <p>Completed Tasks</p>
+      </span>
+    </div>
+    <div class="tile-card">
+      <div class="deco-card three">
+        <i class="bx bxs-collection bx-sm"></i>
+      </div>
+      <span class="text">
+        <h3>{{ inProgressCount }}</h3>
+        <p>In Progress</p>
+      </span>
+    </div>
+  </div>
+
+  <div class="table-data">
+    <div class="order">
+      <div class="head">
+        <h3>Todo Tasks</h3>
+      </div>
+
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Task</th>
+          <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+          <td mat-cell *matCellDef="let task">
+            {{ task.priority | lowercase }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let task">{{ task.status | lowercase }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let task">
+                <button mat-icon-button>
+                    <mat-icon (click)="viewDetails(task)">visibility</mat-icon>
+                </button>
+
+                <button mat-icon-button>
+                    <mat-icon (click)="openEdit(task)">edit</mat-icon>
+                </button>
+
+                <button mat-icon-button>
+                    <mat-icon (click)="deleteTask(task)">delete</mat-icon>
+                </button>
+            
+            </td>
+          </ng-container>
+
+        
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="9999">
+            <span class="nodata">No Tasks...</span>
+          </td>
+        </tr>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <!-- <mat-paginator #paginator [pageSizeOptions]="[5,10,20]"></mat-paginator> -->
+
+      <mat-paginator
+        [pageSizeOptions]="[10, 25, 100]"
+        [pageSize]="5"
+        [length]="totalElements"
+        (page)="nextPage($event)"
+      >
+      </mat-paginator>
+
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+    </div>
+  </div>
+</section>
+
+<!-- SIDEBAR -->
+
+<!-- <section id="sidebar" [ngClass]="status ? 'hide' : ''" display="flex">
+<a href="#" class="brand">
+<i class='bx bxs-smile'></i>
+<span class="text">AdminHub</span>
+</a>
+<ul class="side-menu top">
+    <li class="active">
+        <a href="#">
+            <i class='bx bxs-dashboard'></i>
+            <span class="text">Dashboard</span>
+        </a>
+    </li>
+<li>
+<a href="#">
+    <i class='bx bxs-shopping-bag-alt'></i>
+    <span class="text">Mystore</span>
+</a>
+</li>
+<li>
+<a href="#">
+    <i class='bx bxs-doughnut-chart'></i>
+    <span class="text">Analytics</span>
+</a>
+</li>
+<li>
+    <a href="#" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text">Logout</span>
+
+    </a>
+</li>
+</ul>
+
+
+TABLE
+
+</section>
+
+
+
+
+CONTENT
+
+<section id="content" >
+    NAVBAR
+    <nav>
+        <i (click)="addToggle()" class='bx bx-menu'></i>
+        <a href="#" class="nav-link">Categories</a>
+        <form action="#">
+            <div class="form-input">
+                <input type="search" placeholder="Search...">
+                <button type="button" class="search-btn"><i class='bx bx-search'></i></button>
+            </div>
+        </form>
+        <a href="#" class="notification">
+            <i class='bx bxs-bell'></i>
+            <span class="num">8</span>
+        </a>
+        <a href="#" class="profile">
+            <img src="">
+        </a>
+    </nav>
+
+    MAIN
+
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Dashboard</h1>
+                <ul class="breadcrumb">
+                 <li>
+                    <a href="#">Dashboard</a>
+                 </li>
+                 <li><i class='bx bx-chevron-right'></i>
+
+                 </li>
+                 <li>
+                    <a class="active" href="#">Home</a>
+                 </li>
+                </ul>
+            </div>
+
+            <a href="#" class="btn-download">
+                <i class='bx bxs-cloud-download'></i>
+                <span class="text">Add Task</span>
+            </a>
+
+        </div>
+
+
+        <ul class="box-info" display="flex">
+            <li>
+                <i class='bx bxs-calender-check'></i>
+                <span class="text">
+                    <h3>{{completedCount}}</h3>
+                    <p>Completed Tasks</p>
+                </span>
+            </li>
+
+            <li>
+                <i class='bx bxs-group'></i>
+                <span class="text">
+                    <h3>345</h3>
+                    <p>Pending Tasks</p>
+                </span>
+            </li>
+            <li>
+                <i class='bx bxs-dollar-circle'></i>
+                <span class="text">
+                    <h3>5677</h3>
+                    <p>In Progress</p>
+                </span>
+            </li>
+        </ul>
+
+        <div class="table-data" display="flex">
+            <div class="order">
+                <div class="head">
+                    <h3>Todo Tasks</h3>
+                </div>
+            
+                <table mat-table  [dataSource]="dataSource" >
+
+                    <ng-container matColumnDef="title">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Task </th>
+                      <td mat-cell *matCellDef="let task"> {{ task.title }} </td>
+                    </ng-container>
+              
+                    <ng-container matColumnDef="priority">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+                      <td mat-cell *matCellDef="let task"> {{ task.priority }} </td>
+                    </ng-container>
+              
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                      <td mat-cell *matCellDef="let task"> {{ task.status }} </td>
+                    </ng-container>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="9999">
+                          <span class="nodata">No Tasks...</span>
+                        </td>
+                      </tr>
+              
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                  </table>
+              
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+              
+            </div>
+            </div>
+
+    </main>
+
+</section> -->

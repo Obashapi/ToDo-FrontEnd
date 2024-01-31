@@ -1,0 +1,48 @@
+<section id="view-details">
+    <h3>Task Details</h3>
+<div class="task-info">
+ 
+
+
+
+
+
+   >
+
+    <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput disabled value="{{selectedTask?.title}}">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput disabled value="{{selectedTask?.description}}">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Priority</mat-label>
+        <input matInput disabled value="{{selectedTask?.priority}}">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <input matInput disabled value="{{selectedTask?.status}}">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Due date</mat-label>
+        <input matInput disabled value="{{selectedTask?.dueDate}}">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Creation date</mat-label>
+        <input matInput disabled value="{{selectedTask?.creationDate}}">
+    </mat-form-field>
+
+    
+</div>
+
+<div >
+    <button mat-raised-button color="primary" (click)="editTask(selectedTask)">Update Details</button>
+</div>
+
+</section>

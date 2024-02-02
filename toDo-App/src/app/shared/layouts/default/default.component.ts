@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, RouterOutlet } from '@angular/router';
 import { SearchCriteria, Status, Tasks } from 'src/app/models/task.model';
@@ -51,6 +51,7 @@ export class DefaultComponent implements OnInit {
   pendingCount:number = 0;
   status: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  onNextPage = new EventEmitter<any>();
   searchText:any;
   totalPages: number = 0;
   total: number = 0;
@@ -316,6 +317,20 @@ export class DefaultComponent implements OnInit {
   }
 
 
+
+  getStatusColorClass(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'completed':
+        return 'status-completed'; 
+      case 'inprogress':
+        return 'status-in-progress'; 
+        case 'pending':
+        return 'status-pending'
+      
+      default:
+        return ''; 
+    }
+  }
 
 
 

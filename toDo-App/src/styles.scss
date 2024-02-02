@@ -240,18 +240,23 @@ body {
 
 
 #content  .head-title {
-    display: flex;
-    align-items: center;
+    display:flex;
+    // padding-left: 210px;
+    // padding-top: 20px;
+    justify-content:center;
+    grid-gap:55%;
+    padding-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
     
-    justify-content:space-between;
-    grid-gap: 16px;
-    flex-wrap: wrap;
   }
   #content  .head-title .left h1 {
+    
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--dark);
+   
     
   }
 
@@ -422,6 +427,52 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   left: 0;
   z-index: 1000;
 }
+
+.status-completed {
+ background: var(--yellow);
+ font-weight: bold;
+ display: inline-flex;
+ font-size: 11px;
+ width:60px;
+ border-radius: 15px;
+ color: var(--light);
+}
+
+.status-in-progress {
+background:var(--orange);
+font-weight: bold;
+display: inline-flex;
+font-size: 11px;
+width:60px;
+border-radius: 15px;
+color: var(--light);
+}
+
+.status-pending {
+background:var(--blue);
+font-weight: bold;
+display: inline-flex;
+font-size: 11px;
+width:60px;
+border-radius: 11px;
+color: var(--light);
+}
+
+
+
+// login css.............................
+.left-side{
+  background-color: var(--blue);
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+}
+
+.title{
+  font-family: var(--poppins);
+  font-size:xx-large;
+ }
+
 
 
 

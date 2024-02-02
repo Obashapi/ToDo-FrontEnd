@@ -1,3 +1,45 @@
+
+
+<!-- <section id="sidebar" [ngClass]="status ? 'hide' : ''" display="flex">
+<a href="#" class="brand">
+<i class='bx bxs-smile'></i>
+<span class="text">AdminHub</span>
+</a>
+<ul class="side-menu top">
+    <li class="active">
+        <a href="#">
+            <i class='bx bxs-dashboard'></i>
+            <span class="text">Dashboard</span>
+        </a>
+    </li>
+<li>
+<a href="#">
+    <i class='bx bxs-shopping-bag-alt'></i>
+    <span class="text">Mystore</span>
+</a>
+</li>
+<li>
+<a href="#">
+    <i class='bx bxs-doughnut-chart'></i>
+    <span class="text">Analytics</span>
+</a>
+</li>
+<li>
+    <a href="#" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text">Logout</span>
+
+    </a>
+</li>
+</ul>
+
+
+</section> -->
+
+
+
+
+
 <section id="content">
 
   <nav>
@@ -73,7 +115,7 @@
 
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-          <td mat-cell *matCellDef="let task">{{ task.status | lowercase }}</td>
+          <td mat-cell *matCellDef="let task" [ngClass]="getStatusColorClass(task.status)">{{ task.status | lowercase }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
@@ -91,18 +133,7 @@
             <i class="bx bxs-trash bx-sm"></i>
         </a>
 
-                <!-- <button mat-icon-button>
-                    <mat-icon (click)="viewDetails(task)">visibility</mat-icon>
-                </button>
-
-                <button mat-icon-button>
-                    <mat-icon (click)="openEdit(task)">edit</mat-icon>
-                </button>
-
-                <button mat-icon-button>
-                    <mat-icon (click)="deleteTask(task)">delete</mat-icon>
-                </button>
-             -->
+                
             </td>
           </ng-container>
 

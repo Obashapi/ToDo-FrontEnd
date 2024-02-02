@@ -7,12 +7,15 @@ import { MatDialog, MatDialogConfig ,MatDialogModule, MAT_DIALOG_DATA,
 import { CreateTaskComponent } from '../create-task/create-task.component';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-view-task',
   standalone: true,
-  imports: [MatFormFieldModule,MatDialogModule],
+  imports: [MatFormFieldModule,MatDialogModule, CommonModule,  MatInputModule,],
   templateUrl: './view-task.component.html',
   styleUrls: ['./view-task.component.scss'],
 })

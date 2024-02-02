@@ -24,6 +24,10 @@ import { createTask } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/services/task.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 
 @Component({
   selector: 'app-create-task',
@@ -35,7 +39,10 @@ import { CommonModule } from '@angular/common';
     MatDialogModule,
     MatSelectModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+    
     
   ],
   templateUrl: './create-task.component.html',
@@ -45,7 +52,11 @@ export class CreateTaskComponent implements OnInit {
   createTaskform!: FormGroup;
   tasks!: createTask;
   submitted: boolean = false;
-
+  mode: 'ADD' | 'EDIT' = 'ADD';
+  btnText = 'Save';
+  heading = 'Create Task';
+  isReadonly: boolean=false;
+  // isReadonly: boolean=false;
   constructor(
     private taskService: TaskService,
     private toastr: ToastrService,
@@ -53,21 +64,32 @@ export class CreateTaskComponent implements OnInit {
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CreateTaskComponent>
-  ) {}
+  ) {
+    if (data) {
+      this.mode = 'EDIT';
+      this.initForm();
+      this.isReadonly = !this.isReadonly;
+    }
+  }
 
   ngOnInit(): void {
 
     this.initForm();
-    this.populateForm();
+    this.btnText = this.mode == 'ADD' ? 'Save' : 'Update';
+    this.heading =
+      this.mode == 'ADD'
+        ? 'Create Task'
+        : 'Edit Task';
+if(this.data){
+  this.populateForm();}
   }
 
-  // 'title', 'priority', 'status'
   populateForm() {
     this.createTaskform.setValue({
       id: this.data.id,
       title: this.data?.title,
       priority: this.data?.priority,
-      status: this.data?.priority,
+      status: this.data?.status,
       description: this.data?.description,
       creationDate: this.data?.creationDate,
       dueDate: this.data?.creationDate,
@@ -122,7 +144,7 @@ export class CreateTaskComponent implements OnInit {
 
   onSubmit(){
     this.submitted=true;
-    let admin =<any>{
+    let task=<any>{
       id:this.f['id'].value,
       title:this.f['title'].value,
       priority:this.f['priority'].value,
@@ -132,11 +154,11 @@ export class CreateTaskComponent implements OnInit {
       dueDate:this.f['dueDate'].value
     }
     if(this.data){
-      admin.id =this.data.id;
-      this.editTask(admin);
+      task.id =this.data.id;
+      this.editTask(task);
 
     }else{
-      this.createTask(admin);
+      this.createTask(task);
     }
   }
 }

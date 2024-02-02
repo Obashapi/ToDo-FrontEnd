@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 // import { CoreComponent } from './core/core.component';
 // import { LoginComponent } from './pages/login/login.component';
-import { TodoCardComponent } from './shared/components/todo-card/todo-card.component';
 // import { MasterheaderComponent } from './shared/layouts/masterheader/masterheader.component';
 import { HeaderComponent } from './shared/layouts/header/header.component';
 import { DefaultComponent } from './shared/layouts/default/default.component';
@@ -20,23 +19,17 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule} from '@angular/material/dialog';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SearchFilterPipe } from './shared/components/searchFilter.pipe';
+import { CommonModule } from '@angular/common';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    // CoreComponent,
-    //LoginComponent,
-    TodoCardComponent,
-   
-    // MasterheaderComponent,
-    // HeaderComponent,
-    // DefaultComponent,
     SlidePanelComponent,
+ 
      
-    // MasterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatTableModule,
+    CommonModule,
+    SearchFilterPipe,
     ToastrModule.forRoot({
       preventDuplicates: true,
       positionClass: 'toast-top-right',
@@ -53,7 +48,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
  
-    // AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

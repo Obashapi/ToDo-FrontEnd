@@ -1,14 +1,26 @@
 <section id="content">
+
+  <nav>
+    <form action="#">
+      <div class="form-input">
+          <input type="search" placeholder="Search..."  (keyup)="applyFilter($event)" >
+          <button type="button" class="search-btn"><i class='bx bx-search'></i></button>
+      </div>
+  </form>
+</nav>
+
   <div class="head-title">
     <div class="left">
       <h1>Dashboard</h1>
     </div>
+ 
+    <a href="#" class="btn-add" (click)="createTasks() ;false">
+      <span class="text">Add Task</span>
+  </a>
 
-    <!-- <a href="#"  class="btn-add"> -->
-    <button class="btn-add" (click)="createTasks()">Add Task</button>
-    <!-- <span class="text"></span> -->
-    <!-- </a> -->
   </div>
+
+
 
   <div class="dashboard-cards">
     <div class="tile-card">
@@ -34,14 +46,14 @@
         <i class="bx bxs-collection bx-sm"></i>
       </div>
       <span class="text">
-        <h3>{{ inProgressCount }}</h3>
+        <h3>{{ inprogressCount }}</h3>
         <p>In Progress</p>
       </span>
     </div>
   </div>
 
   <div class="table-data">
-    <div class="order">
+    <div class="order" >
       <div class="head">
         <h3>Todo Tasks</h3>
       </div>
@@ -49,7 +61,7 @@
       <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Task</th>
-          <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+          <td mat-cell *matCellDef="let task ">{{ task.title }}</td>
         </ng-container>
 
         <ng-container matColumnDef="priority">
@@ -67,7 +79,19 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let task">
-                <button mat-icon-button>
+
+              <a href="#" class="action-icon" (click)="viewDetails(task) ;false">
+                <i class="bx bxs-show bx-sm"></i>
+            </a>
+
+            <a href="#" class="action-icon" (click)="openEdit(task);false">
+              <i class="bx bxs-edit-alt bx-sm"></i>
+          </a>
+          <a href="#" class="action-icon" (click)="deleteTask(task);false">
+            <i class="bx bxs-trash bx-sm"></i>
+        </a>
+
+                <!-- <button mat-icon-button>
                     <mat-icon (click)="viewDetails(task)">visibility</mat-icon>
                 </button>
 
@@ -78,7 +102,7 @@
                 <button mat-icon-button>
                     <mat-icon (click)="deleteTask(task)">delete</mat-icon>
                 </button>
-            
+             -->
             </td>
           </ng-container>
 
@@ -90,10 +114,9 @@
           </td>
         </tr>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns " ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns "></tr>
       </table>
-      <!-- <mat-paginator #paginator [pageSizeOptions]="[5,10,20]"></mat-paginator> -->
 
       <mat-paginator
         [pageSizeOptions]="[10, 25, 100]"
@@ -103,7 +126,6 @@
       >
       </mat-paginator>
 
-      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
     </div>
   </div>
 </section>

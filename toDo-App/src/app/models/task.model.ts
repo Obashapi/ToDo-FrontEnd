@@ -28,9 +28,9 @@ export interface Tasks {
     creationDate:Date;
   }
   
-  export interface SearchCriteria{
-    title:string;
-    status:Status;
-    priority:Priority;
-
+ 
+  export interface SearchCriteria {
+    keyType: 'STRING' | 'OBJECT';
+    objType: 'FREE'|'TITLE' | 'RSTATUS' | 'PRIORITY'  ;
+    val: string;
   }

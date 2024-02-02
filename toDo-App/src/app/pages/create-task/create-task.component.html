@@ -1,77 +1,86 @@
-<h3 mat-dialog-title>Create Task</h3>
+<h3 mat-dialog-title>{{heading}}</h3>
 
 <mat-dialog-content>
-
-<section id="forms-section">
-
+  <section id="forms-section">
     <!-- <div class="form-block"> -->
 
     <div class="form-group" [formGroup]="createTaskform">
-
-     <div>
+      <div>
         <mat-form-field appearance="outline">
-            <mat-label>title</mat-label>
-            <input matInput placeholder="title" formControlName="title">    
-
+          <mat-label>title</mat-label>
+          <input matInput placeholder="title" formControlName="title" />
+          <mat-error *ngIf="f['title'].hasError('required')">
+            Title is required
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>status</mat-label>
-            <select  formControlName="status" matNativeControl required>
-                <option value="COMPLETED">COMPLETED</option>
-                <option value="PENDING">PENDING</option>
-                <option value="INPROGRESS">INPROGRESS</option>
-              </select>
+          <mat-label>status</mat-label>
+          <select formControlName="status" matNativeControl required>
+            <option value="COMPLETED">COMPLETED</option>
+            <option value="PENDING">PENDING</option>
+            <option value="INPROGRESS">INPROGRESS</option>
+          </select>
+          <mat-error *ngIf="f['status'].hasError('required')">
+            Select the status
+          </mat-error>
         </mat-form-field>
-
-    </div>
-    <div>
-   
+      </div>
+      <div>
         <mat-form-field appearance="outline">
-            <mat-label>priority</mat-label>
-            <select formControlName="priority" matNativeControl required>
-                <option value="HIGH">HIGH</option>
-                <option value="LOW">LOW</option>
-                <option value="MEDIUM">MEDIUM</option>
-              </select>
+          <mat-label>priority</mat-label>
+          <select formControlName="priority" matNativeControl required>
+            <option value="HIGH">HIGH</option>
+            <option value="LOW">LOW</option>
+            <option value="MEDIUM">MEDIUM</option>
+          </select>
+          <mat-error *ngIf="f['priority'].hasError('required')">
+            Select the priority
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>creationDate</mat-label>
-            <input matInput placeholder="creation date">
-        </mat-form-field>
-    
-    </div>
+       
+     <mat-form-field appearance="outline">
+        <mat-label>due date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="dueDate" formControlName="dueDate"  >
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>dueDate</mat-label>
-            <input matInput placeholder="due date" formControlName="dueDate">
-        </mat-form-field>
-    </div>
+      </div>
 
-    
-        <mat-form-field appearance="outline">
-            <mat-label>description</mat-label>
-            <textarea matInput placeholder="description" formControlName="description"></textarea>
-        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>description</mat-label>
+        <textarea
+          matInput
+          placeholder="description"
+          formControlName="description"
+        ></textarea>
+        <mat-error *ngIf="f['description'].hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
 
-        <!-- <mat-form-field appearance="outline">
+      <!-- <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
             <input matInput placeholder="description">
         </mat-form-field> -->
-
-   
     </div>
-<!-- </div> -->
+    <!-- </div> -->
 
-<!-- <a href="#" class="btn-add">
+    <!-- <a href="#" class="btn-add">
     <span class="text">Add Task</span>
 </a> -->
-</section>
-
+  </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" (click)="onSubmit()" >Add</button>
+  <a href="#">
+    <span class="btn-delete">Cancel</span>
+  </a>
+  <!-- <button class="btn-delete">Cancel</button> -->
+
+  <!-- <button class="btn-add" (click)="onSubmit()" >Add</button> -->
+  <a href="#" *ngIf="createTaskform.valid" (click)="onSubmit()" >
+    <span class="btn-add" >{{btnText}}</span>
+  </a>
 </mat-dialog-actions>

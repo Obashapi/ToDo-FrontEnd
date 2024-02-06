@@ -61,25 +61,16 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <input matInput placeholder="description">
-        </mat-form-field> -->
+     
     </div>
-    <!-- </div> -->
-
-    <!-- <a href="#" class="btn-add">
-    <span class="text">Add Task</span>
-</a> -->
+   
   </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <a href="#">
     <span class="btn-delete">Cancel</span>
   </a>
-  <!-- <button class="btn-delete">Cancel</button> -->
-
-  <!-- <button class="btn-add" (click)="onSubmit()" >Add</button> -->
+  
   <a href="#" *ngIf="createTaskform.valid" (click)="onSubmit()" >
     <span class="btn-add" >{{btnText}}</span>
   </a>

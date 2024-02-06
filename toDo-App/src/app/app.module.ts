@@ -19,6 +19,7 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFilterPipe } from './shared/components/searchFilter.pipe';
 import { CommonModule } from '@angular/common';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     SlidePanelComponent,
+    RegisterComponent,
  
      
   ],

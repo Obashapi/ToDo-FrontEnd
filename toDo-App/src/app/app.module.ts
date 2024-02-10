@@ -10,7 +10,7 @@ import { DefaultComponent } from './shared/layouts/default/default.component';
 import { SlidePanelComponent } from './shared/ui/slide-panel/slide-panel.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
@@ -19,7 +19,7 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFilterPipe } from './shared/components/searchFilter.pipe';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './pages/register/register.component';
+import { AuthHttpAuthenticationServiceInterceptor } from './interceptors/auth-http-authentication-service.interceptor';
 
 
 
@@ -27,7 +27,6 @@ import { RegisterComponent } from './pages/register/register.component';
   declarations: [
     AppComponent,
     SlidePanelComponent,
-    RegisterComponent,
  
      
   ],
@@ -49,7 +48,9 @@ import { RegisterComponent } from './pages/register/register.component';
     ReactiveFormsModule,
  
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpAuthenticationServiceInterceptor, multi: true }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

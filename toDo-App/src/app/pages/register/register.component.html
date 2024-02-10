@@ -1,1 +1,47 @@
-<p>register works!</p>
+<h3 mat-dialog-title>Login Registration</h3>
+
+<!-- <mat-dialog-content> -->
+  <section id="forms-section">
+
+    <div class="form-group" [formGroup]="registerForm" (ngSubmit)="register()"  >
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>firstname</mat-label>
+          <input matInput placeholder="title" formControlName="firstname" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>lastnamename</mat-label>
+            <input matInput placeholder="title" formControlName="firstname" />
+          </mat-form-field>
+      
+      </div>
+
+      <div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>email</mat-label>
+            <input matInput placeholder="title" formControlName="firstname" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+              <mat-label>password</mat-label>
+              <input matInput placeholder="title" formControlName="firstname" />
+            </mat-form-field>
+        
+      </div>
+     
+    </div>
+   
+  </section>
+<!-- </mat-dialog-content>
+<mat-dialog-actions align="end"> -->
+  <a href="#">
+    <span class="btn-delete">Cancel</span>
+  </a>
+  
+  <a href="#" *ngIf="registerForm.valid" >
+    <span class="btn-add" >Register</span>
+  </a>
+
+

@@ -28,6 +28,21 @@ export interface Tasks {
     creationDate:Date;
   }
   
+  export interface registerUser{
+    id:number;
+    firstname:string;
+    lastname:string;
+    email:string;
+    password:string;
+  }
+  export interface authenticationRequest{
+    email:string;
+    password:string;
+  }
+
+  export interface AuthenticationResponse {
+    token: string;
+  }
  
   export interface SearchCriteria {
     keyType: 'STRING' | 'OBJECT';
